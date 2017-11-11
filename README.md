@@ -1,1 +1,3 @@
 # faceColor
+
+This OpenFrameworks application plays a video and while playing, attempts to recognize human faces appearing. The bounding rectangles of the suspected faces are re-coloured with a 0-255 hue value that is set by the horizontal position of the mouse. Pressing 'F' pauses the video playback and lets the user step frame by frame back or forward with the arrow keys, press 'F' again to switch back to continuous playback mode.

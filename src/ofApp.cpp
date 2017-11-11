@@ -7,7 +7,7 @@ void ofApp::setup() {
 	ofSetVerticalSync(true);
 	frameByframe = false;
 
-	resizeRate = 2;
+	resizeRate = 2.f;
 	if (!player.load("movies/scene.mp4")) {
 		std::cout << "Couldn't load video file. Exiting." << std::endl;
 		std::exit(0);
@@ -170,7 +170,6 @@ void ofApp::colorFaces() {
 	imgResized.resize(vidWidth / resizeRate, vidHeight / resizeRate);
 	finder.findHaarObjects(imgResized);
 	ofPixels &pixels = player.getPixelsRef();
-	ofPixels &origRef = imgOrig.getPixelsRef();
 	for (auto blob : finder.blobs) {
 		ofRectangle rct = blob.boundingRect;
 		rct.scale(resizeRate);
@@ -185,15 +184,11 @@ void ofApp::colorFaces() {
 				pxc.SetH(hue);
 				pxc.ToRGB();
 
-				//imgOrig.getPixelsRef()[px] = pxc.GetR();
-				//imgOrig.getPixelsRef()[px + 1] = pxc.GetG();
-				//imgOrig.getPixelsRef()[px + 2] = pxc.GetB();
-
-				origRef[px] = pxc.GetR();
-				origRef[px + 1] = pxc.GetG();
-				origRef[px + 2] = pxc.GetB();
+				pixels[px] = pxc.GetR();
+				pixels[px + 1] = pxc.GetG();
+				pixels[px + 2] = pxc.GetB();
 			}
 		}
 	}
-	imgOrig.setFromPixels(origRef);
+	imgOrig.setFromPixels(pixels);
 }

@@ -13,7 +13,7 @@ class ofApp : public ofBaseApp {
 	int nChannels;
 	ofVideoPlayer player;
 	ofImage imgOrig, imgResized;
-	float resizeRate;
+	float resizeRate = 1.f; // resized image is passed to face finder, expecting faster operation
 
 	bool frameByframe;
 
